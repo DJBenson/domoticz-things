@@ -65,7 +65,7 @@ The "MemoryHigh", "MemoryMax" and "TasksMax" were put in place to stop the scrip
     Tasks: 1 (limit: 3)
     Memory: 9.8M (high: 10.0M max: 15.0M)
     CGroup: /system.slice/system-presence.slice/presence@iphone.service
-    └─83293 /usr/bin/python2 /home/pi/domoticz/scripts/check_device_online.py iphone.thomserve.uk 78 10 120 
+    └─83293 /usr/bin/python2 /home/pi/domoticz/scripts/check_device_online.py iphone 78 10 120 
 
 10. Enable the service to start at boot
 >sudo systemctrl enable presence@iphone
