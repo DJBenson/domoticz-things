@@ -1,1 +1,25 @@
-Placeholder
+# Ensure you amend the ExecStart and ExecStopPost lines to point at your script and PID file (which normally reside in the same folder).
+# I suggest you save check_device_online in a folder named 'scripts' inside your 'domoticz' folder. The .pid file will be created by the
+# Python script in the same directory.
+# Feel free to tweak the other options as you see fit - just leave the parameter placeholders e.g. ${IDX} alone!
+# If you have a hostname (e.g. .yourdomain.com or .local) you can append this to the %i variable in the ExecStart and ExecStopPost
+# e.g. %i.yourdomain.com will translate to iphone.yourdomain.com if your config file in /etc/default is named presence@iphone.
+
+[Unit]
+Description=Monitor presence by arping %i
+After=network.target
+
+[Service]
+Environment="LOCAL_ADDR=localhost"
+EnvironmentFile=/etc/default/presence@%i
+ExecStart=/usr/bin/python2 /home/pi/domoticz/scripts/check_device_online.py %i ${IDX} ${INTERVAL} ${COOLDOWN}
+ExecStopPost=/bin/rm /home/pi/domoticz/scripts/check_device_online.py_%i.pid
+RestartSec=5
+Restart=always
+Type=simple
+MemoryHigh=10M
+MemoryMax=15M
+TasksMax=3
+
+[Install]
+WantedBy=multi-user.target
