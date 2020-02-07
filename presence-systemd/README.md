@@ -8,7 +8,7 @@ This variant uses systemd rather than cron and is (in my opinion) more flexible 
  >  sudo apt install python
 
 2. Clone this repository somewhere writable (e.g. /home/pi)
- > git clone -C /home/pi https://github.com/DJBenson/domoticz-things.git
+ > git https://github.com/DJBenson/domoticz-things.git /home/pi/domoticz-things
 
 3. Copy the check_device_online.py somewhere safe
  > cd /home/pi/domoticz-things/presence-systemd
